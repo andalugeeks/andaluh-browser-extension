@@ -17,8 +17,6 @@ chrome.tabs.getSelected(null, function (tab) {
       options.urls = {};
     }
 
-    console.log(options)
-
     if (!options.urls[domain]) {
       options.urls[domain] = false;
     }
@@ -33,8 +31,6 @@ chrome.tabs.getSelected(null, function (tab) {
       }
 
       changeStatusButton.addEventListener('click', async function () {
-        console.log('click');
-
         options.urls[domain] = !options.urls[domain];
 
         if (options.urls[domain]) {
@@ -45,7 +41,6 @@ chrome.tabs.getSelected(null, function (tab) {
 
         // save options
         chrome.storage.local.set({'andaluh': options}, function() {
-          console.log('saved');
           chrome.tabs.reload(tab.id);
         });
       });

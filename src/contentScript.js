@@ -6,8 +6,6 @@ const EPA = new andaluh.EPA();
 chrome.storage.local.get('andaluh', function (options) {
   options = options.andaluh || {};
   let currentPageUrl = location.hostname;
-
-  console.log(options)
   let currentPageStatus = options.urls[currentPageUrl];
 
   if (currentPageStatus) {
