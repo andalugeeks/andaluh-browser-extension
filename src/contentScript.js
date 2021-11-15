@@ -30,7 +30,7 @@ chrome.storage.local.get('andaluh', function (options) {
         // If innerText contains any HTML tags, ignore it
         if (text.innerHTML.indexOf('<') === -1) {
           // Translate the text
-          const translated = EPA.transcript(text.innerHTML);
+          const translated = EPA.transcript(text.innerHTML, 'ç', 'h', true);
           // Update the text
           text.innerHTML = translated;
           text.classList.add('andaluh-translated');
