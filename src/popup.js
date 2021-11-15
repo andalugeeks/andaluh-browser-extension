@@ -25,18 +25,18 @@ chrome.tabs.getSelected(null, function (tab) {
       let changeStatusButton = document.getElementById('change-status');
 
       if (options.urls[domain]) {
-        changeStatusButton.innerText = 'Páina traduçida automáticamente';
+        changeStatusButton.innerText = 'Páhina traduçía automáticamente';
       } else {
-        changeStatusButton.innerText = 'Páina no traduzida automáticamente';
+        changeStatusButton.innerText = 'Páhina no traduçía automáticamente';
       }
 
       changeStatusButton.addEventListener('click', async function () {
         options.urls[domain] = !options.urls[domain];
 
         if (options.urls[domain]) {
-          changeStatusButton.innerText = 'Páina traduçida automáticamente';
+          changeStatusButton.innerText = 'Páhina traduçía automáticamente';
         } else {
-          changeStatusButton.innerText = 'Páina no traduzida automáticamente';
+          changeStatusButton.innerText = 'Páhina no traduçía automáticamente';
         }
 
         // save options
