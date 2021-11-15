@@ -15,7 +15,8 @@
     "size-plugin": "^2.0.2",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "ansi-regex": ">=5.0.1"
   },
   "dependencies": {
     "@andalugeeks/andaluh": "^1.1.8"
