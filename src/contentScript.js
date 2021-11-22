@@ -16,7 +16,7 @@ chrome.storage.local.get('andaluh', function (options) {
         // Get the textarea value
         const text = event.target.value;
         // Translate the text
-        const translated = EPA.transcript(text);
+        const translated = EPA.transcript(text, options.vaf, options.vvf, true);
         // Update the textarea value
         event.target.value = translated;
       }
@@ -41,7 +41,7 @@ chrome.storage.local.get('andaluh', function (options) {
         // If innerText contains any HTML tags, ignore it
         if (text.innerHTML.indexOf('<') === -1) {
           // Translate the text
-          const translated = EPA.transcript(text.innerHTML, 'ç', 'h', true);
+          const translated = EPA.transcript(text.innerHTML, options.vaf, options.vvf, true);
           // Update the text
           text.innerHTML = translated;
           text.classList.add('andaluh-translated');

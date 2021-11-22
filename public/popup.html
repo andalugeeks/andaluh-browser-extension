@@ -2,21 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Chrome Extension</title>
+    <title>Andaluh Browser Extension</title>
     <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <div class="app">
-    <button id="change-status" class="button">Traduçîh páina automáticamente</button>
+
+  <!-- LOGO -->
+  <div style="text-align: center; margin: 10px;">
+    <img src="https://andaluh.es/wp-content/uploads/2019/02/logo-andalugeeks-web.png" style="width: 200px; ">
+  </div>
+
+  <form>
+
+  <!-- OPTIONS -->
+  <div style="display: flex; margin-left: 20px;">
+    <!-- VAF -->
+      <div class="cc-selector" style="display: inline-block;">
+        <div class="cc-option">
+          <input checked="checked" id="epa" type="radio" name="vaf" value="ç"/>
+          <label class="drinkcard-cc epa" for="epa"></label>
+          <span class="cc">Çeçeo (estándar)</span>
+        </div>
+        <div class="cc-option">
+          <input id="seseo" type="radio" name="vaf" value="s"/>
+          <label class="drinkcard-cc seseo" for="seseo"></label>
+          <span class="cc">Seseo</span>
+        </div>
+        <div class="cc-option">
+          <input id="zezeo" type="radio" name="vaf" value="z"/>
+          <label class="drinkcard-cc zezeo" for="zezeo"></label>
+          <span class="cc">Zezeo</span>
+        </div>
+        <div class="cc-option">
+          <input id="heheo" type="radio" name="vaf" value="h"/>
+          <label class="drinkcard-cc heheo" for="heheo"></label>
+          <span class="cc">Heheo</span>
+        </div>
+      </div>
+
+    <!-- VVF -->
+    <div class="cc-selector" style="display: inline-block;">
+      <div class="cc-option">
+        <input checked="checked" id="aspirada" type="radio" name="vvf" value="h"/>
+        <label class="drinkcard-cc aspirada" for="aspirada"></label>
+        <span class="cc">Aspirada [h]</span>
+      </div>
+      <div class="cc-option">
+        <input id="jota" type="radio" name="vvf" value="j"/>
+        <label class="drinkcard-cc jota"for="jota"></label>
+        <span class="cc">Usar la Jota</span>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+  <!-- BUTTON -->
+  <div class="app" style="margin: 10px;">
+    <button id="change-status" class="button">Transcribir al Andalûh</button>
+  </div>
+
+  <br/>
+  <!-- FOOTER -->
+  <div style="text-align: center; padding-bottom: 20px;">
+    <a href="https://andaluh.es/transcriptor" target="_blank" style="color: white;">Transcriptor</a>
+    <span style="color: white;"> | </span>
+    <a href="https://andaluh.es/teclao-andaluh" target="_blank" style="color: white;">Teclao</a>
+    <span style="color: white;"> | </span>
+    <a href="https://wiki.andaluh.es" target="_blank" style="color: white;">Wikipedia</a>
+    <span style="color: white;"> | </span>
+    <a href="https://andaluh.es" target="_blank" style="color: white;">Web</a>
   </div>
 
   <script src="popup.js"></script>
-
-  <!--
-    This HTML file opens when you click on icon from the toolbar.
-
-    To begin the development, run `npm run watch`.
-    To create a production bundle, use `npm run build`.
-  -->
 </body>
 </html>
