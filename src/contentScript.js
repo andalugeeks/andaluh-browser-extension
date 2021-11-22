@@ -16,7 +16,7 @@ chrome.storage.local.get('andaluh', function (options) {
         // Get the textarea value
         const text = event.target.value;
         // Translate the text
-        const translated = EPA.transcript(text);
+        const translated = EPA.transcript(text, options.vaf, options.vvf, true);
         // Update the textarea value
         event.target.value = translated;
       }
@@ -24,13 +24,24 @@ chrome.storage.local.get('andaluh', function (options) {
 
     // replace all text with translated text
     function replaceAllTextWithTranslated() {
-      const texts = document.querySelectorAll("h1:not(.andaluh-translated), h2:not(.andaluh-translated), h3:not(.andaluh-translated), h4:not(.andaluh-translated), h5:not(.andaluh-translated), p:not(.andaluh-translated), a:not(.andaluh-translated), title:not(.andaluh-translated), span:not(.andaluh-translated)");
+      const texts = document.querySelectorAll("\
+        h1:not(.andaluh-translated), \
+        h2:not(.andaluh-translated), \
+        h3:not(.andaluh-translated), \
+        h4:not(.andaluh-translated), \
+        h5:not(.andaluh-translated), \
+        p:not(.andaluh-translated), \
+        a:not(.andaluh-translated), \
+        title:not(.andaluh-translated), \
+        span:not(.andaluh-translated), \
+        div:not(.andaluh-translated)\
+        b:not(.andaluh-translated)");
 
       for (const text of texts) {
         // If innerText contains any HTML tags, ignore it
         if (text.innerHTML.indexOf('<') === -1) {
           // Translate the text
-          const translated = EPA.transcript(text.innerHTML);
+          const translated = EPA.transcript(text.innerHTML, options.vaf, options.vvf, true);
           // Update the text
           text.innerHTML = translated;
           text.classList.add('andaluh-translated');

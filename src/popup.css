@@ -21,13 +21,11 @@ body {
 }
 
 .app {
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    padding: 20px;
 }
 
 .title {
@@ -85,3 +83,54 @@ body {
     border: .5px dashed #000;
     opacity: .1;
 }
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.cc-option {
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+
+.epa{background-image:url(https://andaluh.es/img/bot-telegram-epa.png);}
+.seseo{background-image:url(https://andaluh.es/img/bot-telegram-ese.png);}
+.zezeo{background-image:url(https://andaluh.es/img/bot-telegram-zeta.png);}
+.heheo{background-image:url(https://andaluh.es/img/bot-telegram-hache.png);}
+.aspirada{background-image:url(https://andaluh.es/img/bot-telegram-aspirada.png);}
+.jota{background-image:url(https://andaluh.es/img/bot-telegram-jota.png);}
+
+.cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+.cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:60px;height:60px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+span.cc{ color:#ffffff }
