@@ -1,6 +1,7 @@
 'use strict';
 
 const andaluh = require('@andalugeeks/andaluh');
+const JSSoup = require('jssoup').default;
 const EPA = new andaluh.EPA();
 
 chrome.storage.local.get('andaluh', function (options) {
@@ -38,14 +39,25 @@ chrome.storage.local.get('andaluh', function (options) {
         b:not(.andaluh-translated)");
 
       for (const text of texts) {
-        // If innerText contains any HTML tags, ignore it
-        if (text.innerHTML.indexOf('<') === -1) {
-          // Translate the text
-          const translated = EPA.transcript(text.innerHTML, options.vaf, options.vvf, true);
-          // Update the text
-          text.innerHTML = translated;
-          text.classList.add('andaluh-translated');
+        var soup = new JSSoup(text.innerHTML);
+        for (var element of soup.descendants) {
+          // console.log(element.constructor.name);
+          // console.log(element);
+          if (element.constructor.name === 'SoupString') {
+            if (element.string !== null) {
+              console.log(element);
+              var newElement = element;
+              newElement._text = EPA.transcript(element._text, options.vaf, options.vvf, true);
+              element.replaceWith(newElement);
+              // element._text = EPA.transcript(element._text, options.vaf, options.vvf, true);
+              if (newElement.classList) {
+                newElement.classList.add('andaluh-translated');
+              }
+              console.log(newElement);
+            }
+          }
         }
+        text.innerHTML = soup;
       }
     }
 
