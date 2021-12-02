@@ -3,43 +3,44 @@
 const andaluh = require('@andalugeeks/andaluh');
 const EPA = new andaluh.EPA();
 
+const CSS_CLASS = '.andaluh-transliterated'
 function getAllTextElements() {
-  const texts = document.querySelectorAll("\
-    sup:not(.andaluh-translated), \
-    h1:not(.andaluh-translated), \
-    h2:not(.andaluh-translated), \
-    h3:not(.andaluh-translated), \
-    h4:not(.andaluh-translated), \
-    h5:not(.andaluh-translated), \
-    h6:not(.andaluh-translated), \
-    p:not(.andaluh-translated), \
-    a:not(.andaluh-translated), \
-    label:not(.andaluh-translated), \
-    title:not(.andaluh-translated), \
-    span:not(.andaluh-translated), \
-    div:not(.andaluh-translated), \
-    input:not(.andaluh-translated), \
-    li:not(.andaluh-translated), \
-    b:not(.andaluh-translated)");
+  const texts = document.querySelectorAll(`\
+    sup:not(${CSS_CLASS}), \
+    h1:not(${CSS_CLASS}), \
+    h2:not(${CSS_CLASS}), \
+    h3:not(${CSS_CLASS}), \
+    h4:not(${CSS_CLASS}), \
+    h5:not(${CSS_CLASS}), \
+    h6:not(${CSS_CLASS}), \
+    p:not(${CSS_CLASS}), \
+    a:not(${CSS_CLASS}), \
+    label:not(${CSS_CLASS}), \
+    title:not(${CSS_CLASS}), \
+    span:not(${CSS_CLASS}), \
+    div:not(${CSS_CLASS}), \
+    input:not(${CSS_CLASS}), \
+    li:not(${CSS_CLASS}), \
+    b:not(${CSS_CLASS})`);
 
   return texts;
 }
 
-const isAlreadyTranslated = (e) => {
+const isAlreadyTransliterated = (e) => {
   const { nodeType } = e
   const isNotTextNode = nodeType !== Node.TEXT_NODE 
-  const isParentTranslated = isNotTextNode && e.parentElement && e.parentElement.classList && e.parentElement.classList.contains('andaluh-translated')
-  return isNotTextNode ? isParentTranslated : e['andaluh']
+  const isParentTransliterated = isNotTextNode && e.parentElement && e.parentElement.classList && e.parentElement.classList.contains('andaluh-transliterated')
+  return isNotTextNode ? isParentTransliterated : e['andaluh']
 }
 
 function switchTextAndSetFlag(e, andaluh) {
-  if (isAlreadyTranslated(e)) return
+  if (isAlreadyTransliterated(e)) return
   const { nodeType } = e
   if (nodeType === Node.TEXT_NODE) {
     e['andaluh'] = true;
-    e.parentElement.classList.add('andaluh-translated');
+    e.parentElement.classList.add('andaluh-transliterated');
   } else if (e && e.classList) {
-    e.classList.add('andaluh-translated');
+    e.classList.add('andaluh-transliterated');
   }
 
   if (e.nodeName === 'INPUT') {
@@ -55,21 +56,21 @@ chrome.storage.local.get('andaluh', function (options) {
   let currentPageStatus = options.urls[currentPageUrl];
 
   if (currentPageStatus) {
-    // automatically translate text
-    function autoTranslateText(event) {
+    // automatically transliterated text
+    function autoTransliterateText(event) {
       // Wait for the user to stop typing
       if (event.target.value.length > 0) {
         // Get the textarea value
         const text = event.target.value;
-        // Translate the text
-        const translated = EPA.transcript(text, options.vaf, options.vvf, true);
+        // Transliterate the text
+        const transliterated = EPA.transcript(text, options.vaf, options.vvf, true);
         // Update the textarea value
-        event.target.value = translated;
+        event.target.value = transliterated;
       }
     }
 
-    // replace all text with translated text
-    function replaceAllTextWithTranslated(elements) {
+    // replace all text with transliterated text
+    function replaceAllTextWithTransliterated(elements) {
       if (!elements) return
       for (const element of elements) {
         if (element.nodeName === 'STYLE' || element.nodeName === 'SCRIPT') continue;
@@ -88,7 +89,7 @@ chrome.storage.local.get('andaluh', function (options) {
             switchTextAndSetFlag(element, EPA.transcript(textContent, options.vaf, options.vvf, true));
           })
         } else if (!noChildren) {
-          replaceAllTextWithTranslated(childNodes);
+          replaceAllTextWithTransliterated(childNodes);
         }
       }
     }
@@ -96,7 +97,7 @@ chrome.storage.local.get('andaluh', function (options) {
     // Iterate over all textarea and add a listener to each one
     const textboxes = document.querySelectorAll("textarea, input[type=text]");
     for (const textbox of textboxes) {
-      textbox.addEventListener('dblclick', autoTranslateText);
+      textbox.addEventListener('dblclick', autoTransliterateText);
     }
 
     const debounce = function(method, delay) {
@@ -108,7 +109,7 @@ chrome.storage.local.get('andaluh', function (options) {
 
     const runOnScroll = function() {
       const texts = getAllTextElements()
-      replaceAllTextWithTranslated(texts);
+      replaceAllTextWithTransliterated(texts);
     };
 
     function initScrollEvent() {
@@ -120,7 +121,7 @@ chrome.storage.local.get('andaluh', function (options) {
     // Leave some space for elements that are not in the DOM yet
     setTimeout(() => {
       const texts = getAllTextElements()
-      replaceAllTextWithTranslated(texts);
+      replaceAllTextWithTransliterated(texts);
     }, 250)
     // Start listening scroll events
     // otherwise the elements loaded via infinite-scroll will not be in andaluh
