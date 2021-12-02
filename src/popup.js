@@ -21,7 +21,8 @@ function getRadioValue(theRadioGroup)
     }
 }
 
-chrome.tabs.getSelected(null, function (tab) {
+chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
+  let tab = tabs[0];
   let domain = url_domain(tab.url);
   // Get extension options
   chrome.storage.local.get('andaluh', function (options) {
