@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "watch": "webpack --mode=development --watch --config config/webpack.config.js",
-    "build": "webpack --mode=production --config config/webpack.config.js"
+    "build": "webpack --mode=production --config config/webpack.config.js",
+    "zip": "zip -rj build.zip build/*"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.4.1",
