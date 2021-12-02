@@ -29,7 +29,7 @@ function getAllTextElements() {
 const isAlreadyTransliterated = (e) => {
   const { nodeType } = e
   const isNotTextNode = nodeType !== Node.TEXT_NODE 
-  const isParentTransliterated = isNotTextNode && e.parentElement && e.parentElement.classList && e.parentElement.classList.contains('andaluh-transliterated')
+  const isParentTransliterated = isNotTextNode && e.parentElement && e.parentElement.classList && e.parentElement.classList.contains(`${CSS_CLASS}`)
   return isNotTextNode ? isParentTransliterated : e['andaluh']
 }
 
@@ -38,9 +38,9 @@ function switchTextAndSetFlag(e, andaluh) {
   const { nodeType } = e
   if (nodeType === Node.TEXT_NODE) {
     e['andaluh'] = true;
-    e.parentElement.classList.add('andaluh-transliterated');
+    e.parentElement.classList.add(`${CSS_CLASS}`);
   } else if (e && e.classList) {
-    e.classList.add('andaluh-transliterated');
+    e.classList.add(`${CSS_CLASS}`);
   }
 
   if (e.nodeName === 'INPUT') {
