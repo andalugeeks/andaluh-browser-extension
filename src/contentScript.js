@@ -38,7 +38,7 @@ function switchTextAndSetFlag(e, andaluh) {
   const { nodeType } = e
   if (nodeType === Node.TEXT_NODE) {
     e['andaluh'] = true;
-    e.parentElement.classList.add(`${CSS_CLASS}`);
+    e.parentElement && e.parentElement.classList.add(`${CSS_CLASS}`);
   } else if (e && e.classList) {
     e.classList.add(`${CSS_CLASS}`);
   }
