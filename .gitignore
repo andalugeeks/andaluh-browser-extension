@@ -3,3 +3,5 @@ build/
 build.zip
 package-lock.json
 size-plugin.json
+andaluh-browser-extension-*.zip
+key.pem
