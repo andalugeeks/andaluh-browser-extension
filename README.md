@@ -30,8 +30,8 @@ Install directly from the extension stores:
 
 * <a href="https://chrome.google.com/webstore/detail/andaluh-for-web-browser/hgfhnijcbdidgdhheepmdgodjphcmfhc">Andaluh Browser for Google Chrome</a>
 * <a href="https://microsoftedge.microsoft.com/addons/detail/andaluh-for-web-browser/logmeeenbhafjlddjajgpilmlbmhcekm">Andaluh Browser for Microsoft Edge</a>
-* Andaluh Browser for Firefox (soon!)
-* Andaluh Browser for Firefox Android (soon!)
+* <a href="https://addons.mozilla.org/firefox/addon/andaluh-for-firefox/">Andaluh Browser for Firefox</a>
+* <a href="https://addons.mozilla.org/android/addon/andaluh-for-firefox/">Andaluh Browser for Firefox Android</a>
 
 ## Development
 
@@ -39,6 +39,12 @@ For Chrome and Edge use `npm` to build and test:
 
 ```
 $ npm run-script build
+```
+
+With Node.js 17 or newer, webpack 4 requires the legacy OpenSSL provider:
+
+```
+$ NODE_OPTIONS=--openssl-legacy-provider npm run-script build
 ```
 
 Then enable `Developer Mode` for extensions and click on `Load unpacked` (more info for <a href="https://developer.chrome.com/docs/extensions/mv3/getstarted/">chrome</a> and <a href="https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/extension-sideloading">edge</a>). Select `build/` to load the unpacked extension.
